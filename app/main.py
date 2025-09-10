@@ -33,6 +33,14 @@ templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 
 app = FastAPI(limit="50M")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # --------------- CORS 中间件 ---------------
 # 如果 ALLOWED_ORIGINS 为空列表，则不允许任何跨域请求
 if settings.ALLOWED_ORIGINS:
